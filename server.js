@@ -6,14 +6,14 @@ const path = require('path');
 
 const app = express();
 
-// 1. CLOUDINARY CONFIGURATION (Using your keys)
+
 cloudinary.config({
     cloud_name: 'dspag2aww',
     api_key: '576135641335578',
     api_secret: 'QGBFL9uUfnUGQvlEyKZ6WTCPC3c'
 });
 
-// 2. SETTING UP CLOUD STORAGE
+
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-// 3. THE SUBMIT ROUTE
+
 app.post('/submit', upload.single('idImage'), (req, res) => {
     try {
         if (!req.file) {
@@ -36,10 +36,10 @@ app.post('/submit', upload.single('idImage'), (req, res) => {
 
         const formData = {
             ...req.body,
-            idImageUrl: req.file.path // This is the link to the image in the cloud
+            idImageUrl: req.file.path 
         };
 
-        // For now, we log the data. In the future, you can save this to a database.
+        
         console.log("New Submission Received:", formData);
 
         res.send(`

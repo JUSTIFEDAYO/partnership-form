@@ -118,19 +118,16 @@
     </div>
 
     <script>
-      // Auto-fill today's date
       document.getElementById("autoDate").value =
         new Date().toLocaleDateString();
 
       function nextSection(sectionNum) {
-        // Hide all sections
         document
           .querySelectorAll(".form-section")
           .forEach((sec) => sec.classList.remove("active"));
-        // Show target section
+
         document.getElementById("section" + sectionNum).classList.add("active");
 
-        // Update Progress Bar
         document.querySelectorAll(".step").forEach((step, index) => {
           if (index + 1 <= sectionNum) step.classList.add("active");
           else step.classList.remove("active");
